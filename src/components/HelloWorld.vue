@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <el-button type="primary" @click="test">Api测试</el-button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -33,10 +34,21 @@
 </template>
 
 <script>
+import request from 'utils/request.js'
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    test() {
+      const users = request.get('/users')
+        .then(res => {
+          console.log(res)
+        })
+      console.log(users)
+    }
   }
 }
 </script>
